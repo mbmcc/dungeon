@@ -14,49 +14,45 @@ def print_screen(*args):
     for words in args:
         print(words)
 
+def get_choice():
+    choose_again = 'true'
+    while choose_again:
+        choice_text= """
+ What do you want to do?:
 
-#clear_screen()
-#print(welcome)
+ (a)ttack (m)ove (l)ook (s)neak (t)alk (u)se item
+        """
+        valid_actions = [
+        "a", "attack", "m", "move", "l", "look", "s", "sneak", "t", "talk", "u", "use item"  
+        ]
+        valid_choice = False
+        player_action = input(choice_text)
+        
+        for option in valid_actions:
+            if player_action == option: 
+                return option
+                valid_choice = True
+                choose_again = False
+                break
 
-print_screen(welcome)
-
-## encounter
-choose_again = 'true'
-choice_text= """
-(a)ttack (w)alk (r)etreat (s)neak (t)alk (u)se item
-"""
-valid_actions = [
-"a", "attack", "w", "walk", "r", "retreat", "s", "sneak", "t", "talk", "u", "use item"  
-]
- 
-while choose_again:
-    valid_choice = False
-    player_action = input(choice_text)
-    print_screen("player_action is ", player_action)
-    for item in valid_actions:
-        if player_action == item: 
-            print("matched item is ", item)
-            valid_choice = True
-            choose_again = False
-            break
-
-    if valid_choice == False:
-        print("please choose a valid option")
+        if valid_choice == False:
+            print_screen("please choose a valid option")
 
 
-##------
-#if player_action == "f":
-#    print("you chose to fight")
-#    choose = "false"
-#
-#elif player_action == "r":
-#    print("you chose to run")
-#
-#elif player_action == "d":
-#    print("you chose to do")
-#
-#elif player_action == "u":
-#    print("you chose to use")
-#
-print("game over")
+if __name__ == "__main__":
+    main()
+
+
+def main():
+    print_screen(welcome)
+    input()
+    print_screen("""
+ You see a shadowy figure in the distance. 
+            """)
+    choice = get_choice()
+    print_screen(" You chose ", choice)
+    input()
+
+    print("game over")
+
 
